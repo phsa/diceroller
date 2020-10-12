@@ -7,3 +7,5 @@ The differences are:
 - using ViewBinding to rid of findViewByIds; 
 - replacement of original colors and 
 - a customization for the button tha uses a rounded shape.
+- a launch icon.
+- an *activity_main.xml* for land configuration.
