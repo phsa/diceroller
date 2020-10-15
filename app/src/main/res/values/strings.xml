@@ -2,8 +2,5 @@
     <string name="app_name">Dice Roller</string>
 
     <string name="action_roll">Roll</string>
-    <string name="label_dice">Dice</string>
-    <string name="label_one">1</string>
-    <string name="msg_hello_boys">Hello, Boys!</string>
-    <string name="msg_hello_android">Hello, Android!</string>
+    <string name="image_description_dice">White dice with moss green markings</string>
 </resources>

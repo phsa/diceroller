@@ -1,19 +1,14 @@
 package com.example.diceroller
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.diceroller.databinding.ActivityMainBinding
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewBinding: ActivityMainBinding
-    private var currentResult = -1
-
-    companion object {
-        private const val CURRENT_RESULT_KEY = "CURRENT_RESULT"
-    }
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,16 +16,13 @@ class MainActivity : AppCompatActivity() {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        savedInstanceState?.let {
-            currentResult = it.getInt(CURRENT_RESULT_KEY)
-            setProperDiceImage(currentResult)
-        }
-        viewBinding.buttonRole.setOnClickListener { rollDice() }
-    }
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-    private fun rollDice() {
-        currentResult = Random().nextInt(6) + 1
-        setProperDiceImage(currentResult)
+        viewModel.diceResult().observe(this, { result ->
+            setProperDiceImage(result)
+        })
+
+        viewBinding.buttonRoll.setOnClickListener { viewModel.rollDice() }
     }
 
     private fun setProperDiceImage(value: Int) {
@@ -44,11 +36,5 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.icon_main_empty_dice
         }
         viewBinding.imageDice.setImageResource(properResource)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        outState.putInt(CURRENT_RESULT_KEY, currentResult)
     }
 }
