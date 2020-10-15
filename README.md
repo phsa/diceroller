@@ -1,6 +1,6 @@
 ### Dice Roller from Udacity's Android free course
 
-A simple Dice Roller app. A little bit different from the original. 
+A simple Dice Roller app. A little bit different from the original from the Udacity's "Developing Android Apps with Kotlin". 
 
 The differences are: 
 - keeping the *ConstraintLayout*, instead of changing to *LinearLayout*, and then using bias to place the elements; 
